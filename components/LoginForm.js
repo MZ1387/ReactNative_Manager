@@ -1,34 +1,46 @@
-import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import React, { Component } from 'react';
+import { connect } from 'redux';
+import { emailChanged } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
-const LoginForm = (props) => {
-  return (
-    <Card>
+class LoginForm extends Component {
+  onEmailChange = (text) => {
+    this.props.dispatch(emailChanged(text))
+  }
 
-      <CardSection>
-        <Input
-          label="Email"
-          placeholder="example@email.com"
-        />
-      </CardSection>
+  render() {
+    return (
+      <Card>
 
-      <CardSection>
-        <Input
-          label="Password"
-          secureTextEntry
-          placeholder="password"
-        />
-      </CardSection>
+        <CardSection>
+          <Input
+            label="Email"
+            placeholder="example@email.com"
+            onChangeText={this.onEmailChange}
+          />
+        </CardSection>
 
-      <CardSection>
-        <Button>
-          Login
-        </Button>
-      </CardSection>
-      
-    </Card>
-  );
+        <CardSection>
+          <Input
+            label="Password"
+            secureTextEntry
+            placeholder="password"
+          />
+        </CardSection>
+
+        <CardSection>
+          <Button>
+            Login
+          </Button>
+        </CardSection>
+
+      </Card>
+    );
+  }
 };
 
-export default LoginForm;
+const mapStateToProps = (state) => {
+  return {};
+}
+
+export default connect(mapStateToProps)(LoginForm);
