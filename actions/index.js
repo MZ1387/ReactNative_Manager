@@ -37,5 +37,5 @@ const loginUserSuccess = (dispatch, user) => {
 };
 
 const loginUserFail = (dispatch) => {
-  dispatch({ type: LOGIN_USER_FAIL, payload: user })
+  dispatch({ type: LOGIN_USER_FAIL })
 };
