@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { Picker, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeeCreate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
 class EmployeeCreate extends Component {
+  onButtonPress = () => {
+    const { dispatch, name, phone, shift } = this.props;
+    dispatch(employeeCreate({ name, phone, shift: shift || 'Monday' }));
+  }
+
   render() {
     const { dispatch, name, phone, shift } = this.props;
     const { pickerTextStyle } = styles;
@@ -46,7 +51,7 @@ class EmployeeCreate extends Component {
         </CardSection>
 
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress}>
             Create
           </Button>
         </CardSection>
