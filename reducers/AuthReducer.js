@@ -28,5 +28,5 @@ export default (state = initialState, action) => {
       return { ...state, error: 'Authentication Failed', loading: false };
     default:
       return state;
-  }
-}
+  };
+};
