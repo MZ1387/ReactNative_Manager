@@ -7,12 +7,21 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key='root' hideNavBar >
+
         <Scene key='auth'>
-          <Scene key='login' component={LoginForm} title='Please login' initial />
+          <Scene key='login' component={LoginForm} title='Please login'  />
         </Scene>
-        <Scene key='main'>
-          <Scene key='employeeList' component={EmployeeList} title='Employees' />
+
+        <Scene key='main' initial>
+          <Scene
+            rightTitle='Add'
+            onRight={() => { console.log('RIGHT') }}
+            key='employeeList'
+            component={EmployeeList}
+            title='Employees'
+          />
         </Scene>
+
       </Scene>
     </Router>
   );
