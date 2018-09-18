@@ -10,10 +10,10 @@ const RouterComponent = () => {
       <Scene key='root' hideNavBar >
 
         <Scene key='auth'>
-          <Scene key='login' component={LoginForm} title='Please login'  />
+          <Scene key='login' component={LoginForm} title='Please login' initial />
         </Scene>
 
-        <Scene key='main' initial>
+        <Scene key='main' >
           <Scene
             key='employeeList'
             component={EmployeeList}
