@@ -1,22 +1,31 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { employeeCreate } from '../actions';
 import { Card, CardSection, Button } from './common';
+import { employeeUpdate } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
-class EmployeeCreate extends Component {
+class EmployeeEdit extends Component {
+  componentWillMount() {
+    const { dispatch, employee } = this.props;
+
+    _.each(employee, (value, prop) => {
+      dispatch(employeeUpdate({ prop, value }))
+    })
+  }
+
   onButtonPress = () => {
     const { dispatch, name, phone, shift } = this.props;
-    dispatch(employeeCreate({ name, phone, shift: shift || 'Monday' }));
+    console.log('UPDATE', name, phone, shift);
   }
 
   render() {
     return (
       <Card>
-        <EmployeeForm {...this.props} />
+        <EmployeeForm />
         <CardSection>
           <Button onPress={this.onButtonPress}>
-            Create
+            Save Changes
           </Button>
         </CardSection>
       </Card>
@@ -29,4 +38,4 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
 
-export default connect(mapStateToProps)(EmployeeCreate);
+export default connect(mapStateToProps)(EmployeeEdit);
